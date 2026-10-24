@@ -60,7 +60,7 @@ header h1 {
 header .lead {
     font-size: 1.08rem;
     color: var(--ink-muted);
-    max-width: 560px;
+    max-width: 640px;
     margin: 0 auto;
 }
 
@@ -100,7 +100,8 @@ section p {
     margin-bottom: 1.75rem;
 }
 
-#boton {
+/* ---------- BOTONES ---------- */
+.boton {
     background-color: var(--accent);
     color: var(--accent-ink);
     border: none;
@@ -113,25 +114,78 @@ section p {
     transition: filter 0.2s ease, transform 0.15s ease;
 }
 
-#boton:hover {
+.boton:hover {
     filter: brightness(1.08);
     transform: translateY(-1px);
 }
 
-#boton:active {
+.boton:active {
     transform: translateY(0);
 }
 
-#boton:focus-visible {
-    outline: 2px solid var(--accent);
+.boton:focus-visible {
+    outline: 2px solid var(--ink);
     outline-offset: 3px;
 }
 
-.hint {
+/* Indicador de estado del botón que muestra/oculta (decorativo) */
+.boton-toggle::after {
+    content: "▾";
+    content: "▾" / "";
+    display: inline-block;
+    margin-left: 0.6rem;
+    transition: transform 0.2s ease;
+}
+
+.boton-toggle[aria-expanded="true"]::after {
+    transform: rotate(180deg);
+}
+
+/* Mensaje visible que actualiza el botón de la fase A */
+.intro .mensaje {
+    margin: 1rem 0 0;
+    min-height: 1.65em;
     font-family: var(--mono);
-    font-size: 0.82rem;
-    margin-top: 0.85rem;
-    color: #6d7278;
+    font-size: 0.9rem;
+    color: var(--accent);
+}
+
+/* ---------- INFORMACIÓN AMPLIADA ---------- */
+.info {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.info h3 {
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin: 1.25rem 0 0.4rem;
+}
+
+.info h3:first-child {
+    margin-top: 0;
+}
+
+.info ul {
+    padding-left: 1.25rem;
+    color: var(--ink-muted);
+    font-size: 1.02rem;
+}
+
+.info li + li {
+    margin-top: 0.25rem;
+}
+
+.info a {
+    color: var(--accent);
+}
+
+/* Clase que alterna JavaScript con classList */
+.oculto {
+    display: none;
 }
 
 /* ---------- FEATURES ---------- */
@@ -224,5 +278,13 @@ footer {
     }
     .feature-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .boton,
+    .boton-toggle::after,
+    .footer-links a {
+        transition: none;
     }
 }

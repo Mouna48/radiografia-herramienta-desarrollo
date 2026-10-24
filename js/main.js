@@ -1,8 +1,10 @@
-import { mostrarMensaje } from "./interfaz.js";
+import { mostrarMensaje, alternarInformacion } from "./interfaz.js";
 
 // Selección de elementos
 const boton = document.getElementById("boton");
 const mensaje = document.getElementById("mensaje");
+const botonInfo = document.getElementById("btn-info");
+const panelInfo = document.getElementById("info-ampliada");
 
 // ---------- Fase A: dos manejadores para el mismo clic ----------
 let pulsaciones = 0;
@@ -21,4 +23,9 @@ boton.addEventListener("click", () => {
 boton.addEventListener("click", (evento) => {
     console.log("JavaScript funciona correctamente.");
     console.log(`Interacción registrada: ${evento.type} en #${evento.currentTarget.id}`);
+});
+
+// ---------- Fase B: mostrar y ocultar información ----------
+botonInfo.addEventListener("click", () => {
+    alternarInformacion(botonInfo, panelInfo);
 });

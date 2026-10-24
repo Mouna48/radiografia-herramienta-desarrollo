@@ -26,8 +26,40 @@
                 trabajar con diferentes lenguajes de programación.
             </p>
 
-            <button id="boton" type="button">Probar JavaScript</button>
+            <button id="boton" class="boton" type="button">Probar JavaScript</button>
             <p id="mensaje" class="mensaje" role="status" aria-live="polite"></p>
+        </section>
+
+        <!-- Fase B: información ampliada que se muestra y se oculta -->
+        <section aria-labelledby="titulo-info">
+            <h2 id="titulo-info">Información ampliada</h2>
+
+            <button id="btn-info" class="boton boton-toggle" type="button"
+                    aria-expanded="false" aria-controls="info-ampliada">
+                Instalación, ventajas y extensiones
+            </button>
+
+            <div id="info-ampliada" class="info oculto">
+                <h3>Instalación</h3>
+                <p>
+                    Se descarga desde la web oficial,
+                    <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">code.visualstudio.com</a>,
+                    y está disponible para Windows, macOS y Linux.
+                </p>
+
+                <h3>Ventajas</h3>
+                <ul>
+                    <li>Es gratuito y funciona en los tres sistemas operativos principales.</li>
+                    <li>Es ligero y arranca rápido, incluso en equipos modestos.</li>
+                    <li>Reúne editor, terminal, depurador y Git en una sola ventana.</li>
+                </ul>
+
+                <h3>Extensiones</h3>
+                <p>
+                    El Marketplace ofrece miles de extensiones. Para desarrollo web
+                    son habituales Live Server, Prettier y ESLint.
+                </p>
+            </div>
         </section>
     </main>
 
