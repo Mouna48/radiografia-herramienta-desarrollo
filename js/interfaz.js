@@ -1,6 +1,17 @@
 // Funciones que trabajan con el DOM. No registran eventos: eso lo hace main.js.
 
 /**
+ * Pasa a minúsculas y quita los acentos para que "depuracion" encuentre "Depuración".
+ */
+function normalizar(texto) {
+    return texto
+        .normalize("NFD")
+        .replace(/[̀-ͯ]/g, "")
+        .toLowerCase()
+        .trim();
+}
+
+/**
  * Fase A: escribe un mensaje visible en la página.
  */
 export function mostrarMensaje(elemento, texto) {
@@ -43,4 +54,40 @@ function crearTarjeta({ nombre, categoria, descripcion }) {
  */
 export function mostrarCaracteristicas(contenedor, lista) {
     contenedor.replaceChildren(...lista.map(crearTarjeta));
+}
+
+/**
+ * Fase D: devuelve las características cuyo nombre o descripción
+ * contienen el texto buscado. Si la búsqueda está vacía, devuelve todas.
+ */
+export function filtrarCaracteristicas(lista, consulta) {
+    const termino = normalizar(consulta);
+
+    if (termino === "") {
+        return lista;
+    }
+
+    return lista.filter(({ nombre, descripcion }) =>
+        normalizar(nombre).includes(termino) ||
+        normalizar(descripcion).includes(termino)
+    );
+}
+
+/**
+ * Fase D: informa de cuántas características se muestran y, si no hay
+ * ninguna coincidencia, explica qué ha pasado.
+ */
+export function actualizarEstadoBusqueda(elemento, consulta, mostradas, total) {
+    let texto;
+
+    if (mostradas === 0) {
+        texto = `No hay características que coincidan con «${consulta.trim()}». Prueba con otra palabra, por ejemplo «Git» o «terminal».`;
+    } else if (mostradas === total) {
+        texto = `Mostrando las ${total} características.`;
+    } else {
+        texto = `Mostrando ${mostradas} de ${total} características.`;
+    }
+
+    elemento.textContent = texto;
+    elemento.classList.toggle("estado-vacio", mostradas === 0);
 }

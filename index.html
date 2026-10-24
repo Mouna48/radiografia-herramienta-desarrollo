@@ -62,9 +62,17 @@
             </div>
         </section>
 
-        <!-- Fase C: las tarjetas las genera JavaScript; aquí solo está el contenedor -->
+        <!-- Fases C y D: las tarjetas las genera JavaScript; aquí solo está el contenedor -->
         <section aria-labelledby="titulo-caracteristicas">
             <h2 id="titulo-caracteristicas">Características principales</h2>
+
+            <div class="buscador" role="search">
+                <label for="buscador">Buscar una característica</label>
+                <input id="buscador" type="search" autocomplete="off"
+                       placeholder="Por ejemplo: depurador, Git, terminal">
+            </div>
+
+            <p id="estado-busqueda" class="estado" role="status" aria-live="polite"></p>
 
             <ul id="lista-caracteristicas" class="feature-grid"></ul>
         </section>

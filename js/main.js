@@ -2,7 +2,9 @@ import { caracteristicas } from "./datos.js";
 import {
     mostrarMensaje,
     alternarInformacion,
-    mostrarCaracteristicas
+    mostrarCaracteristicas,
+    filtrarCaracteristicas,
+    actualizarEstadoBusqueda
 } from "./interfaz.js";
 
 // Selección de elementos
@@ -10,6 +12,8 @@ const boton = document.getElementById("boton");
 const mensaje = document.getElementById("mensaje");
 const botonInfo = document.getElementById("btn-info");
 const panelInfo = document.getElementById("info-ampliada");
+const buscador = document.getElementById("buscador");
+const estadoBusqueda = document.getElementById("estado-busqueda");
 const listaCaracteristicas = document.getElementById("lista-caracteristicas");
 
 // ---------- Fase A: dos manejadores para el mismo clic ----------
@@ -36,5 +40,21 @@ botonInfo.addEventListener("click", () => {
     alternarInformacion(botonInfo, panelInfo);
 });
 
-// ---------- Fase C: tarjetas generadas desde el array ----------
-mostrarCaracteristicas(listaCaracteristicas, caracteristicas);
+// ---------- Fases C y D: tarjetas generadas y búsqueda ----------
+function actualizarLista() {
+    const consulta = buscador.value;
+    const resultado = filtrarCaracteristicas(caracteristicas, consulta);
+
+    mostrarCaracteristicas(listaCaracteristicas, resultado);
+    actualizarEstadoBusqueda(
+        estadoBusqueda,
+        consulta,
+        resultado.length,
+        caracteristicas.length
+    );
+}
+
+buscador.addEventListener("input", actualizarLista);
+
+// Primera carga (también cubre el caso de que el navegador restaure el texto del campo)
+actualizarLista();
