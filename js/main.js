@@ -1,10 +1,16 @@
-import { mostrarMensaje, alternarInformacion } from "./interfaz.js";
+import { caracteristicas } from "./datos.js";
+import {
+    mostrarMensaje,
+    alternarInformacion,
+    mostrarCaracteristicas
+} from "./interfaz.js";
 
 // Selección de elementos
 const boton = document.getElementById("boton");
 const mensaje = document.getElementById("mensaje");
 const botonInfo = document.getElementById("btn-info");
 const panelInfo = document.getElementById("info-ampliada");
+const listaCaracteristicas = document.getElementById("lista-caracteristicas");
 
 // ---------- Fase A: dos manejadores para el mismo clic ----------
 let pulsaciones = 0;
@@ -29,3 +35,6 @@ boton.addEventListener("click", (evento) => {
 botonInfo.addEventListener("click", () => {
     alternarInformacion(botonInfo, panelInfo);
 });
+
+// ---------- Fase C: tarjetas generadas desde el array ----------
+mostrarCaracteristicas(listaCaracteristicas, caracteristicas);
